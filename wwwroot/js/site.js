@@ -1,4 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 // Vars..
@@ -53,7 +53,7 @@ function init() {
 
     //init UI..
     $("#controls").removeAttr("hidden");
-    $("#pauseBtn").hide();
+    //$("#pauseBtn").hide();
     $("#playBtn").show();
 
     $("#restartBtn").hide();
@@ -65,7 +65,6 @@ function fitnessRatingDataLoaded() {
     initProgressBarData();
 
 }
-
 
 // Events Entry..
 function stop() {
@@ -85,9 +84,9 @@ function start() {
 
     processSuttle();
 
-    $("#pauseBtn").show();
+    $("#pauseBtn").hide();
     $("#playBtn").hide();
-
+    $("#controls2").removeAttr("hidden");
     $(".btnPlayer").removeAttr("hidden");
     $("#finishTestBtn").removeAttr("hidden");
 
@@ -227,7 +226,8 @@ function initProgressBarData() {
 
 function getFitnessRatingData() {
     $.ajax({
-        url: siteBaseUrl + "/api/test/FitnessRating", success: function (result) {
+        url: siteBaseUrl + "/api/test/FitnessRating",
+        success: function (result) {
             fitnessRatingData = result;
             fitnessRatingDataLoaded();
             //console.log(result);
@@ -238,7 +238,8 @@ function getFitnessRatingData() {
 
 function getPlayersData() {
     $.ajax({
-        url: siteBaseUrl + "/api/test/GetPlayers", success: function (result) {
+        url: siteBaseUrl + "/api/test/GetPlayers",
+        success: function (result) {
             allPlayersData = result;
         }
     });
@@ -377,8 +378,42 @@ function finishTest() {
 
     $("#pauseBtn").hide();
     $("#playBtn").hide();
-
+    $("#finishTestBtn").hide();
+    $("#divrestartBtn").show()
     $("#restartBtn").show();
 }
+
+
+//Progresive bar
+//$(function () {
+
+//    $(".progress").each(function () {
+
+//        var value = $(this).attr('data-value');
+//        var left = $(this).find('.progress-left .progress-bar');
+//        var right = $(this).find('.progress-right .progress-bar');
+
+//        if (value > 0) {
+//            if (value <= 50) {
+//                right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+//            } else {
+//                right.css('transform', 'rotate(180deg)')
+//                left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+//            }
+//        }
+
+//    })
+
+//    function percentageToDegrees(percentage) {
+
+//        return percentage / 100 * 360
+
+//    }
+
+//});
+
+
+
+
 
 
